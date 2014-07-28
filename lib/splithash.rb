@@ -3,11 +3,16 @@ class SplitHash
     @arr = []
   end
 
-  def splithash(*args)
-    hashs = args[0]
+  def splithash(hashes, *args)
+    #set the array index
     array_key = 0
-    args.delete_at(0)
-    hashs.each do |k, v|
+
+    #check split keys if not existed in hash keys
+    args.each do |a|
+      raise 'Seperate key not found in hashes' if hashes.keys.index(a).nil?
+    end
+
+    hashes.each do |k, v|
       if args.include? k
         @arr.push({ k => v })
         array_key += 1

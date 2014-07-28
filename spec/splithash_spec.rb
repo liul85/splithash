@@ -25,4 +25,8 @@ describe SplitHash do
   it "should return correct array when key is not symbol" do
     expect(SplitHash.new.splithash({'h' => 8, 'a' => '1', 'b' => '2', 'c' => '3', 'd' => '4', 'e' => '5', 'f' => '6'}, 'a', 'd', 'e')).to eq([{"h" => 8}, {"a" => '1', "b" => '2', "c" => '3'}, {"d" => '4'}, {"e" => '5', "f" => '6'}])
   end
+
+  it "should raise error if split key is not found" do
+    expect{SplitHash.new.splithash({'h' => 8, 'a' => '1', 'b' => '2', 'c' => '3', 'd' => '4', 'e' => '5', 'f' => '6'}, 'a', 'z', 'e')}.to raise_error
+  end
 end
